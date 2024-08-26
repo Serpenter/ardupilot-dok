@@ -1274,6 +1274,13 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     AP_SUBGROUPINFO(precland, "PLND_", 35, ParametersG2, AC_PrecLand),
 #endif
 
+    // @Param: TKOFF_UNSAFE
+    // @DisplayName: Takeoff without GPS enable
+    // @Description: Allows to use takeoff mode without GPS
+    // @Values: 0:Disable, 1:Enable
+    // @User: Standard
+    AP_GROUPINFO("TKOFF_UNSAFE", 36, ParametersG2, tkoff_unsafe_enable, TKOFF_UNSAFE),
+    
     AP_GROUPEND
 };
 

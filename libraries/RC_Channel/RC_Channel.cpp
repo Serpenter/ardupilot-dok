@@ -240,6 +240,7 @@ const AP_Param::GroupInfo RC_Channel::var_info[] = {
     // @Values{Copter, Rover, Plane, Blimp}: 177:Mount LRF enable
     // @Values{Copter}: 178:FlightMode Pause/Resume
     // @Values{Copter, Plane}: 180:Test autotuned gains after tune is complete
+    // @Values{Copter, Rover, Plane}: 199:VTX Channel
     // @Values{Rover}: 201:Roll
     // @Values{Rover}: 202:Pitch
     // @Values{Rover}: 207:MainSail
@@ -696,6 +697,9 @@ void RC_Channel::init_aux_function(const AUX_FUNC ch_option, const AuxSwitchPos 
 #if HAL_MOUNT_ENABLED
     case AUX_FUNC::MOUNT_LRF_ENABLE:
 #endif
+#if AP_VIDEOTX_ENABLED
+    case AUX_FUNC::VTX_CHANNEL:
+#endif
         break;
 
     // not really aux functions:
@@ -864,6 +868,16 @@ bool RC_Channel::read_aux()
         int8_t position;
         if (read_6pos_switch(position)) {
             AP::vtx().change_power(position);
+            return true;
+        }
+        return false;
+    } else if (_option == AUX_FUNC::VTX_CHANNEL) {
+        int8_t position;
+        if (read_6pos_switch(position)) {
+            AP::vtx().set_channel(position);
+            AP::vtx().set_configured_channel(AP::vtx().get_channel());
+            AP::vtx().set_configured_band(AP::vtx().get_band());
+            AP::vtx().update_configured_frequency();
             return true;
         }
         return false;

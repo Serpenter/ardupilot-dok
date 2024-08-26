@@ -253,7 +253,8 @@ public:
         MOUNT_LRF_ENABLE =   177,  // mount LRF enable/disable
         FLIGHTMODE_PAUSE =   178,  // e.g. pause movement towards waypoint
         AUTOTUNE_TEST_GAINS = 180, // auto tune tuning switch to test or revert gains
-
+        
+        VTX_CHANNEL =        199, // VTX channel change function
 
         // inputs from 200 will eventually used to replace RCMAP
         ROLL =               201, // roll input
