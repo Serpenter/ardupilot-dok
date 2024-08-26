@@ -1234,7 +1234,6 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Path: ../libraries/AC_PrecLand/AC_PrecLand.cpp
     AP_SUBGROUPINFO(precland, "PLND_", 35, ParametersG2, AC_PrecLand),
 #endif
-
 #if AP_RANGEFINDER_ENABLED
     // @Param: RNGFND_LND_ORNT
     // @DisplayName: rangefinder landing orientation
@@ -1267,7 +1266,13 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Increment: 1
     // @User: Advanced
     AP_GROUPINFO("CLIMB_SLOPE_HGT", 39, ParametersG2, waypoint_climb_slope_height_min, 25),
-
+    // @Param: TKOFF_UNSAFE
+    // @DisplayName: Takeoff without GPS enable
+    // @Description: Allows to use takeoff mode without GPS
+    // @Values: 0:Disable, 1:Enable
+    // @User: Standard
+    AP_GROUPINFO("TKOFF_UNSAFE", 40, ParametersG2, tkoff_unsafe_enable, TKOFF_UNSAFE),
+    
     AP_GROUPEND
 };
 

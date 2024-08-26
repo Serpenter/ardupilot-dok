@@ -370,7 +370,7 @@ public:
         k_param_quicktune,
         k_param_mode_autoland,
         k_param__gcs,
-
+        k_param_tkoff_unsafe_enable,
     };
 
     AP_Int16 format_version;
@@ -593,6 +593,9 @@ public:
 #if AP_PLANE_SYSTEMID_ENABLED
     AP_SystemID systemid;
 #endif
+    AP_Int8         tkoff_unsafe_enable;
+    // just to make compilation easier when all things are compiled out...
+    uint8_t unused_integer;
 };
 
 extern const AP_Param::Info var_info[];

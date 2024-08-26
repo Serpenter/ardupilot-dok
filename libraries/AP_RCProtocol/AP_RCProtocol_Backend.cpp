@@ -158,14 +158,15 @@ void AP_RCProtocol_Backend::configure_vtx(uint8_t band, uint8_t channel, uint8_t
         vtx.set_configured_power_mw(25);
         break;
     case VTX_POWER_26MW_99MW:
-    case VTX_POWER_100MW_299MW:
         vtx.set_configured_power_mw(100);
         break;
-    case VTX_POWER_300MW_600MW:
+    case VTX_POWER_100MW_299MW:
         vtx.set_configured_power_mw(400);
         break;
-    case VTX_POWER_601_PLUS:
+    case VTX_POWER_300MW_600MW:
         vtx.set_configured_power_mw(800);
+    case VTX_POWER_601_PLUS:
+        vtx.set_configured_power_mw(2500);
         break;
     default:
         break;
