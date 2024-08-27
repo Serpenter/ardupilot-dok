@@ -103,7 +103,7 @@ bool Plane::suppress_throttle(void)
     // For unsafe takeoff we consider vehicle as moving vehicle
     bool gps_movement = 
         (gps.status() >= AP_GPS::GPS_OK_FIX_2D && gps.ground_speed() >= 5) 
-        || (g.tkoff_unsafe_enable == 1);
+        || (g2.tkoff_unsafe_enable == 1);
     
     if ((control_mode == &mode_auto &&
          auto_state.takeoff_complete == false) ||
@@ -137,7 +137,7 @@ bool Plane::suppress_throttle(void)
         return false;
     }
 
-    if (gps_movement || (g.tkoff_unsafe_enable == 1)) {
+    if (gps_movement || (g2.tkoff_unsafe_enable == 1)) {
         // if we have an airspeed sensor, then check it too, and
         // require 5m/s. This prevents throttle up due to spiky GPS
         // groundspeed with bad GPS reception

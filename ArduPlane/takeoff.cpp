@@ -49,7 +49,7 @@ bool Plane::auto_takeoff_check(void)
     }  
 
     // Check for bad GPS only for safe takeoff. For unsafe - skip it
-    if ((gps.status() < AP_GPS::GPS_OK_FIX_3D) && (g.tkoff_unsafe_enable == 0)) {
+    if ((gps.status() < AP_GPS::GPS_OK_FIX_3D) && (g2.tkoff_unsafe_enable == 0)) {
         // no auto takeoff without GPS lock
         return false;
     }
@@ -115,7 +115,7 @@ bool Plane::auto_takeoff_check(void)
     }
 
     // Check ground speed and time delay. For unsafe takeoff we need to show some gps speeed
-    if ((((gps.ground_speed() + (g.tkoff_unsafe_enable == 1) ? 0.1f : 0.0f) > g.takeoff_throttle_min_speed || is_zero(g.takeoff_throttle_min_speed))) &&
+    if ((((gps.ground_speed() + (g2.tkoff_unsafe_enable == 1) ? 0.1f : 0.0f) > g.takeoff_throttle_min_speed || is_zero(g.takeoff_throttle_min_speed))) &&
         ((now - takeoff_state.last_tkoff_arm_time) >= wait_time_ms)) {
         gcs().send_text(MAV_SEVERITY_INFO, "Triggered AUTO. GPS speed = %.1f", (double)gps.ground_speed());
         takeoff_state.launchTimerStarted = false;

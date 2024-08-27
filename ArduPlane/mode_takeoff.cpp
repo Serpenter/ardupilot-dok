@@ -76,7 +76,7 @@ void ModeTakeoff::update()
         plane.calc_nav_pitch();
         SRV_Channels::set_output_scaled(SRV_Channel::k_throttle, 0.0);
         // If we want to do takeoff anyway - skip this check
-        if (g.tkoff_unsafe_enable == 0)
+        if (g2.tkoff_unsafe_enable == 0)
         {
             return;
         } 
