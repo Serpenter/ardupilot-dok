@@ -223,3 +223,7 @@
 #ifndef THR_CTRL_LAND_THRESH
  #define THR_CTRL_LAND_THRESH 0.7
 #endif
+
+#ifndef TKOFF_UNSAFE
+    #define TKOFF_UNSAFE 0
+#endif
