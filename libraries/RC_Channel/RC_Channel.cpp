@@ -676,6 +676,7 @@ void RC_Channel::init_aux_function(const AUX_FUNC ch_option, const AuxSwitchPos 
 #endif
 #if AP_VIDEOTX_ENABLED
     case AUX_FUNC::VTX_POWER:
+    case AUX_FUNC::VTX_CHANNEL:
 #endif
 #if AP_OPTICALFLOW_CALIBRATOR_ENABLED
     case AUX_FUNC::OPTFLOW_CAL:
@@ -696,9 +697,6 @@ void RC_Channel::init_aux_function(const AUX_FUNC ch_option, const AuxSwitchPos 
 #endif
 #if HAL_MOUNT_ENABLED
     case AUX_FUNC::MOUNT_LRF_ENABLE:
-#endif
-#if AP_VIDEOTX_ENABLED
-    case AUX_FUNC::VTX_CHANNEL:
 #endif
         break;
 
