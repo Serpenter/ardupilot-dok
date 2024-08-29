@@ -1174,6 +1174,22 @@ const AP_Param::GroupInfo AP_OSD_Screen::var_info2[] = {
     AP_GROUPINFO("ESC_IDX", 10, AP_OSD_Screen, esc_index, 0),
 #endif
 
+    // @Param: PLD_ARM_EN
+    // @DisplayName: PLD_ARM_EN
+    // @Description: Displays Receiver link quality
+    // @Values: 0:Disabled,1:Enabled
+
+    // @Param: PLD_ARM_X
+    // @DisplayName: PLD_ARM_X
+    // @Description: Horizontal position on screen
+    // @Range: 0 59
+
+    // @Param: PLD_ARM_Y
+    // @DisplayName: PLD_ARM_Y
+    // @Description: Vertical position on screen
+    // @Range: 0 21
+    AP_SUBGROUPINFO(pld_arm, "PLD_ARM", 11, AP_OSD_Screen, AP_OSD_Setting),
+
     AP_GROUPEND
 };
 
@@ -2550,6 +2566,19 @@ void AP_OSD_Screen::draw_rngf(uint8_t x, uint8_t y)
 }
 #endif
 
+void AP_OSD_Screen::draw_pld_arm(uint8_t x, uint8_t y)
+{
+    AP_Relay *relay = AP_Relay::get_singleton();
+    if (relay == nullptr) {
+       return;
+    }
+    if (1) {
+        backend->write(x, y, false, "it works");
+    } else {
+        backend->write(x, y, false, "it doesn`t");
+    }
+}
+
 #define DRAW_SETTING(n) if (n.enabled) draw_ ## n(n.xpos, n.ypos)
 
 #if HAL_WITH_OSD_BITMAP || HAL_WITH_MSP_DISPLAYPORT
@@ -2649,6 +2678,8 @@ void AP_OSD_Screen::draw(void)
     DRAW_SETTING(rc_active_antenna);
     DRAW_SETTING(rc_lq);
 #endif
+
+    DRAW_SETTING(pld_arm);
 }
 #endif
 #endif // OSD_ENABLED
