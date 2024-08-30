@@ -2569,13 +2569,32 @@ void AP_OSD_Screen::draw_rngf(uint8_t x, uint8_t y)
 void AP_OSD_Screen::draw_pld_arm(uint8_t x, uint8_t y)
 {
     AP_Relay *relay = AP_Relay::get_singleton();
+    static auto arm_start_time = 0;
+    static bool pld_armed = false;
+
     if (relay == nullptr) {
        return;
     }
-    if (1) {
-        backend->write(x, y, false, "it works");
+    if (relay->get(osd->pld_relay)) {
+        if (pld_armed)
+        {
+            backend->write(x, y, false, "PLD Armed");
+            return;
+        }
+        if(arm_start_time == 0) { arm_start_time = AP_HAL::millis(); }
+
+        auto time_deltha = AP_HAL::millis() - arm_start_time;
+        auto timeout = osd->pld_timeout * 1000;
+        if (time_deltha < timeout)
+        {
+            backend->write(x, y, false, "Arm in %02u", timeout - time_deltha);
+            return;
+        }
+        pld_armed = true;
     } else {
-        backend->write(x, y, false, "it doesn`t");
+        backend->write(x, y, false, "PLD Disarmed");
+        pld_armed = false;
+        arm_start_time = 0;
     }
 }
 
