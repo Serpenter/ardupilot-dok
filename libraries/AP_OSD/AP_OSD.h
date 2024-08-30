@@ -595,6 +595,9 @@ public:
     AP_Int8 failsafe_scr;
     AP_Int32 button_delay_ms;
 
+    AP_Int8 pld_relay;
+    AP_Int16 pld_timeout;
+
 #if AP_OSD_EXTENDED_LNK_STATS
     AP_Int8 warn_lq;
     AP_Int8 warn_snr;

@@ -257,6 +257,21 @@ const AP_Param::GroupInfo AP_OSD::var_info[] = {
     AP_SUBGROUPINFO(param_screen[1], "6_", 22, AP_OSD, AP_OSD_ParamScreen),
 #endif
 
+    // @Param: _PLD_RLY
+    // @DisplayName: Payload relay number
+    // @Description: Which relay is used for payload arm
+    // @Range: 0 16
+    // @User: Standard
+    AP_GROUPINFO("_PLD_RLY", 37, AP_OSD, pld_relay, 1),
+
+    // @Param: _PLD_RLY
+    // @DisplayName: Payload relay number
+    // @Description: Which relay is used for payload arm
+    // @Range: 0 16
+    // @User: Standard
+    AP_GROUPINFO("_PLD_TMT", 38, AP_OSD, pld_timeout, 30),
+
+
 #if OSD_ENABLED
     // additional tables to go beyond 63 limit
     AP_SUBGROUPINFO2(screen[0], "1_", 27, AP_OSD, AP_OSD_Screen),
