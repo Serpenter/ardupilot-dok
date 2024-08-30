@@ -2587,7 +2587,7 @@ void AP_OSD_Screen::draw_pld_arm(uint8_t x, uint8_t y)
         auto timeout = osd->pld_timeout * 1000;
         if (time_deltha < timeout)
         {
-            backend->write(x, y, false, "Arm in %02llu", timeout - time_deltha);
+            backend->write(x, y, false, "Arm in %02lu", timeout - time_deltha);
             return;
         }
         pld_armed = true;
