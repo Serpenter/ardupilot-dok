@@ -2578,7 +2578,7 @@ void AP_OSD_Screen::draw_pld_arm(uint8_t x, uint8_t y)
     if (relay->get(osd->pld_relay)) {
         if (pld_armed)
         {
-            backend->write(x, y, false, "PLD Armed");
+            backend->write(x, y, false, "P ARMED");
             return;
         }
         if(arm_start_time == 0) { arm_start_time = AP_HAL::millis(); }
@@ -2587,12 +2587,12 @@ void AP_OSD_Screen::draw_pld_arm(uint8_t x, uint8_t y)
         auto timeout = osd->pld_timeout * 1000;
         if (time_deltha < timeout)
         {
-            backend->write(x, y, false, "Arm in %02lu", timeout - time_deltha);
+            backend->write(x, y, false, "P ARM IN %02lu", (timeout - time_deltha) / 1000);
             return;
         }
         pld_armed = true;
     } else {
-        backend->write(x, y, false, "PLD Disarmed");
+        backend->write(x, y, false, "P DISARM");
         pld_armed = false;
         arm_start_time = 0;
     }
