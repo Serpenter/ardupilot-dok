@@ -264,10 +264,10 @@ const AP_Param::GroupInfo AP_OSD::var_info[] = {
     // @User: Standard
     AP_GROUPINFO("_PLD_RLY", 37, AP_OSD, pld_relay, 1),
 
-    // @Param: _PLD_RLY
-    // @DisplayName: Payload relay number
-    // @Description: Which relay is used for payload arm
-    // @Range: 0 16
+    // @Param: _PLD_TMT
+    // @DisplayName: Payload arming timeout
+    // @Description: Payload arming timeout in seconds. Note that this counter only shows countdown from relay flip. Real state depends on actual payload
+    // @Range: 0 10800
     // @User: Standard
     AP_GROUPINFO("_PLD_TMT", 38, AP_OSD, pld_timeout, 30),
 
