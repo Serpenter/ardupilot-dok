@@ -263,6 +263,7 @@ private:
 #if HAL_WITH_ESC_TELEM
     AP_Int8 esc_index;
 #endif
+    AP_OSD_Setting pld_arm{false, 1, 1};
 
     void draw_altitude(uint8_t x, uint8_t y);
     void draw_bat_volt(uint8_t instance,VoltageType  type,uint8_t x, uint8_t y);
@@ -348,6 +349,8 @@ private:
     void draw_rc_active_antenna(uint8_t x, uint8_t y);    
     void draw_rc_lq(uint8_t x, uint8_t y);
 #endif
+
+    void draw_pld_arm(uint8_t x, uint8_t y);
 
     struct {
         bool load_attempted;
@@ -591,6 +594,9 @@ public:
     AP_Int8 disarm_scr;
     AP_Int8 failsafe_scr;
     AP_Int32 button_delay_ms;
+
+    AP_Int8 pld_relay;
+    AP_Int16 pld_timeout;
 
 #if AP_OSD_EXTENDED_LNK_STATS
     AP_Int8 warn_lq;
