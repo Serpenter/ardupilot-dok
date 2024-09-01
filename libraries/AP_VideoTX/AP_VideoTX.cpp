@@ -207,6 +207,42 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @Range: 0 45
     AP_GROUPINFO("POW_LEVELS", 32, AP_VideoTX, _num_active_levels, 6),
 
+    // @Param: PRESET1
+    // @DisplayName: Preset #1
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET1", 8, AP_VideoTX, _preset_1, 00),
+
+    // @Param: PRESET2
+    // @DisplayName: Preset #2
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET2", 9, AP_VideoTX, _preset_2, 01),
+
+    // @Param: PRESET3
+    // @DisplayName: Preset #3
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET3", 10, AP_VideoTX, _preset_3, 02),
+
+    // @Param: PRESET4
+    // @DisplayName: Preset #4
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET4", 11, AP_VideoTX, _preset_4, 03),
+
+    // @Param: PRESET5
+    // @DisplayName: Preset #5
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET5", 12, AP_VideoTX, _preset_5, 04),
+
+    // @Param: PRESET6
+    // @DisplayName: Preset #6
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET6", 13, AP_VideoTX, _preset_6, 05),
+
     AP_GROUPEND
 };
 
