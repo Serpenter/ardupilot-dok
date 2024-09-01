@@ -564,15 +564,15 @@ bool RC_Channel::read_6pos_switch(int8_t& position)
         return false;  // This is an error condition
     }
 
-    if (pulsewidth < 1231) {
+    if (pulsewidth < 1110) {
         position = 0;
-    } else if (pulsewidth < 1361) {
+    } else if (pulsewidth < 1305) {
         position = 1;
-    } else if (pulsewidth < 1491) {
+    } else if (pulsewidth < 1500) {
         position = 2;
-    } else if (pulsewidth < 1621) {
+    } else if (pulsewidth < 1694) {
         position = 3;
-    } else if (pulsewidth < 1750) {
+    } else if (pulsewidth < 1888) {
         position = 4;
     } else {
         position = 5;
