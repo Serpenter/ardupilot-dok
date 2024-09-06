@@ -369,6 +369,8 @@ public:
         AUTOLAND =           183,  //Fixed Wing AUTOLAND Mode
         SYSTEMID =           184,  // system ID as an aux switch
 
+        VTX_PRESET =         197, // VTX preset change function
+        VTX_BAND =           198, // VTX band change function
         VTX_CHANNEL =        199, // VTX channel change function
 
         // inputs from 200 will eventually used to replace RCMAP

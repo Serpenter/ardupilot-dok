@@ -158,6 +158,8 @@ public:
     bool get_enabled() const { return _enabled; }
     bool update_enabled() const { return _defaults_set && _enabled != _current_enabled; }
 
+    void set_preset(uint8_t preset_no);
+
     // have the parameters been updated
     bool have_params_changed() const;
     // set configured defaults from current settings, return true if defaults were set
@@ -203,6 +205,20 @@ private:
 
     AP_Int8 _enabled;
     bool _current_enabled;
+
+    // Preset block
+    AP_Int8 _preset_1;
+    AP_Int8 _current_preset_1;
+    AP_Int8 _preset_2;
+    AP_Int8 _current_preset_2;
+    AP_Int8 _preset_3;
+    AP_Int8 _current_preset_3;
+    AP_Int8 _preset_4;
+    AP_Int8 _current_preset_4;
+    AP_Int8 _preset_5;
+    AP_Int8 _current_preset_5;
+    AP_Int8 _preset_6;
+    AP_Int8 _current_preset_6;
 
     bool _initialized;
     // when defaults have been configured
