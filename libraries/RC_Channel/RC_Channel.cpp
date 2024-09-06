@@ -564,15 +564,15 @@ bool RC_Channel::read_6pos_switch(int8_t& position)
         return false;  // This is an error condition
     }
 
-    if (pulsewidth < 1231) {
+    if (pulsewidth < 1110) {
         position = 0;
-    } else if (pulsewidth < 1361) {
+    } else if (pulsewidth < 1305) {
         position = 1;
-    } else if (pulsewidth < 1491) {
+    } else if (pulsewidth < 1500) {
         position = 2;
-    } else if (pulsewidth < 1621) {
+    } else if (pulsewidth < 1694) {
         position = 3;
-    } else if (pulsewidth < 1750) {
+    } else if (pulsewidth < 1888) {
         position = 4;
     } else {
         position = 5;
@@ -676,6 +676,8 @@ void RC_Channel::init_aux_function(const AUX_FUNC ch_option, const AuxSwitchPos 
 #endif
 #if AP_VIDEOTX_ENABLED
     case AUX_FUNC::VTX_POWER:
+    case AUX_FUNC::VTX_PRESET:
+    case AUX_FUNC::VTX_BAND:
     case AUX_FUNC::VTX_CHANNEL:
 #endif
 #if AP_OPTICALFLOW_CALIBRATOR_ENABLED
@@ -873,6 +875,26 @@ bool RC_Channel::read_aux()
         int8_t position;
         if (read_6pos_switch(position)) {
             AP::vtx().set_channel(position);
+            AP::vtx().set_configured_channel(AP::vtx().get_channel());
+            AP::vtx().set_configured_band(AP::vtx().get_band());
+            AP::vtx().update_configured_frequency();
+            return true;
+        }
+        return false;
+    } else if (_option == AUX_FUNC::VTX_BAND) {
+        int8_t position;
+        if (read_6pos_switch(position)) {
+            AP::vtx().set_band(position);
+            AP::vtx().set_configured_channel(AP::vtx().get_channel());
+            AP::vtx().set_configured_band(AP::vtx().get_band());
+            AP::vtx().update_configured_frequency();
+            return true;
+        }
+        return false;
+    } else if (_option == AUX_FUNC::VTX_PRESET) {
+        int8_t position;
+        if (read_6pos_switch(position)) {
+            AP::vtx().set_preset(position);
             AP::vtx().set_configured_channel(AP::vtx().get_channel());
             AP::vtx().set_configured_band(AP::vtx().get_band());
             AP::vtx().update_configured_frequency();

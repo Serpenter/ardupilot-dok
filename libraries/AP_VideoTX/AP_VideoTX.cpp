@@ -75,6 +75,42 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @Range: 25 1000
     AP_GROUPINFO("MAX_POWER", 7, AP_VideoTX, _max_power_mw, 800),
 
+    // @Param: PRESET1
+    // @DisplayName: Preset #1
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET1", 8, AP_VideoTX, _preset_1, 00),
+
+    // @Param: PRESET2
+    // @DisplayName: Preset #2
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET2", 9, AP_VideoTX, _preset_2, 01),
+
+    // @Param: PRESET3
+    // @DisplayName: Preset #3
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET3", 10, AP_VideoTX, _preset_3, 02),
+
+    // @Param: PRESET4
+    // @DisplayName: Preset #4
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET4", 11, AP_VideoTX, _preset_4, 03),
+
+    // @Param: PRESET5
+    // @DisplayName: Preset #5
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET5", 12, AP_VideoTX, _preset_5, 04),
+
+    // @Param: PRESET6
+    // @DisplayName: Preset #6
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET6", 13, AP_VideoTX, _preset_6, 05),
+
     AP_GROUPEND
 };
 
@@ -389,6 +425,39 @@ bool AP_VideoTX::update_options() const
 
     // ignore everything else
     return false;
+}
+
+void AP_VideoTX::set_preset(uint8_t preset_no)
+{
+    switch (preset_no)
+    {
+    case 0:
+        set_channel(_preset_1 % 10);
+        set_band(_preset_1 / 10);
+        break;
+    case 1:
+        set_channel(_preset_2 % 10);
+        set_band(_preset_2 / 10);
+        break;
+    case 2:
+        set_channel(_preset_3 % 10);
+        set_band(_preset_3 / 10);
+        break;
+    case 3:
+        set_channel(_preset_4 % 10);
+        set_band(_preset_4 / 10);
+        break;
+    case 4:
+        set_channel(_preset_5 % 10);
+        set_band(_preset_5 / 10);
+        break;
+    case 5:
+        set_channel(_preset_6 % 10);
+        set_band(_preset_6 / 10);
+        break;
+    default:
+        break;
+    }
 }
 
 bool AP_VideoTX::update_power() const {
