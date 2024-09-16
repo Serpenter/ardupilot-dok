@@ -111,6 +111,72 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @Range: 0 99
     AP_GROUPINFO("PRESET6", 13, AP_VideoTX, _preset_6, 05),
 
+    // @Param: POW_MW_1
+    // @DisplayName: Power level #1 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_1", 14, AP_VideoTX,  _power_levels[0].mw, 25),
+    // @Param: POW_DBM_1
+    // @DisplayName: Power level #1 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_1", 15, AP_VideoTX,  _power_levels[0].dbm, 14),
+
+    // @Param: POW_MW_2
+    // @DisplayName: Power level #2 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_2", 16, AP_VideoTX,  _power_levels[1].mw, 100),
+    // @Param: POW_DBM_2
+    // @DisplayName: Power level #2 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_2", 17, AP_VideoTX,  _power_levels[1].dbm, 20),
+
+    // @Param: POW_MW_3
+    // @DisplayName: Power level #3 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_3", 18, AP_VideoTX,  _power_levels[2].mw, 200),
+    // @Param: POW_DBM_3
+    // @DisplayName: Power level #3 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_3", 19, AP_VideoTX,  _power_levels[2].dbm, 23),
+
+    // @Param: POW_MW_4
+    // @DisplayName: Power level #4 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_4", 20, AP_VideoTX,  _power_levels[3].mw, 400),
+    // @Param: POW_DBM_4
+    // @DisplayName: Power level #4 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_4", 21, AP_VideoTX,  _power_levels[3].dbm, 26),
+
+    // @Param: POW_MW_5
+    // @DisplayName: Power level #5 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_5", 22, AP_VideoTX,  _power_levels[4].mw, 800),
+    // @Param: POW_DBM_5
+    // @DisplayName: Power level #5 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_5", 23, AP_VideoTX,  _power_levels[4].dbm, 29),
+
+    // @Param: POW_MW_6
+    // @DisplayName: Power level #6 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_6", 24, AP_VideoTX,  _power_levels[5].mw, 1000),
+    // @Param: POW_DBM_6
+    // @DisplayName: Power level #6 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_6", 25, AP_VideoTX,  _power_levels[5].dbm, 30),
+
     AP_GROUPEND
 };
 
@@ -157,19 +223,6 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     { 0xFF, 2500, 34, 0XFF }  // slot reserved for a custom power level. Check actual power here
 };
 
-AP_VideoTX::PowerLevel AP_VideoTX::_akk_power_levels[VTX_MAX_POWER_LEVELS] = {
-    // level, mw, dbm, dac
-    { 0,    25,   14, 7    , PowerActive::Active},
-    { 1,    250,  24, 16   , PowerActive::Active},
-    { 2,    500,  27, 25   , PowerActive::Active},
-    { 3,    1000, 30, 40   , PowerActive::Active},
-    { 4,    2000, 33, 0xFF , PowerActive::Active},
-    { 5,    3000, 35, 0XFF , PowerActive::Active},
-    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
-    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
-    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
-    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
-};
 
 AP_VideoTX::AP_VideoTX()
 {
@@ -593,7 +646,7 @@ void AP_VideoTX::change_power(int8_t position)
     }
 
     uint16_t power = 0;
-    power = _akk_power_levels[positon].mw;
+    power =  _power_levels[position].mw;
 
     // Rework it later
     // // first find out how many possible levels there are

@@ -22,6 +22,7 @@
 
 #define VTX_MAX_CHANNELS 8
 #define VTX_MAX_POWER_LEVELS 10
+#define VTX_MAX_ADJUSTABLE_POWER_LEVELS 6
 
 class AP_VideoTX {
 public:
@@ -91,7 +92,7 @@ public:
     };
 
     static PowerLevel _power_levels[VTX_MAX_POWER_LEVELS];
-    static PowerLevel _akk_power_levels[VTX_MAX_POWER_LEVELS];
+    //static PowerLevel _adj_power_levels[VTX_MAX_ADJUSTABLE_POWER_LEVELS];
 
     static const uint16_t VIDEO_CHANNELS[MAX_BANDS][VTX_MAX_CHANNELS];
 
