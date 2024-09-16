@@ -21,7 +21,7 @@
 #include <AP_Param/AP_Param.h>
 
 #define VTX_MAX_CHANNELS 8
-#define VTX_MAX_POWER_LEVELS 10
+#define VTX_MAX_POWER_LEVELS 12
 #define VTX_MAX_ADJUSTABLE_POWER_LEVELS 6
 
 class AP_VideoTX {
@@ -85,8 +85,8 @@ public:
 
     struct PowerLevel {
         uint8_t level;
-        AP_Int16 mw;
-        AP_Int8 dbm;
+        uint16_t mw;
+        uint8_t dbm;
         uint8_t dac; // SmartAudio v1 dac value
         PowerActive active;
     };
