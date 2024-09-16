@@ -832,7 +832,7 @@ void AP_VideoTX::change_power(int8_t position)
         return;
     }
 
-    uint16_t power = 0;
+    // uint16_t power = 0;
     // power =  _power_levels[position].mw;
 
     // Rework it later
