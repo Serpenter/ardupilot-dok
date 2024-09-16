@@ -648,30 +648,30 @@ void AP_VideoTX::change_power(int8_t position)
     }
 
     uint16_t power = 0;
-    power =  _power_levels[position].mw;
+    // power =  _power_levels[position].mw;
 
     // Rework it later
-    // // first find out how many possible levels there are
-    // uint8_t num_active_levels = 0;
-    // for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {
-    //     if (_power_levels[i].active != PowerActive::Inactive && _power_levels[i].mw <= _max_power_mw) {
-    //         num_active_levels++;
-    //     }
-    // }
-    // // iterate through to find the level
-    // uint16_t level = constrain_int16(roundf((num_active_levels * (position + 1)/ 6.0f) - 1), 0, num_active_levels - 1);
-    // debug("looking for pos %d power level %d from %d", position, level, num_active_levels);
-    // uint16_t power = 0;
-    // for (uint8_t i = 0, j = 0; i < num_active_levels; i++, j++) {
-    //     while (j < VTX_MAX_POWER_LEVELS-1 && _power_levels[j].active == PowerActive::Inactive) {
-    //         j++;
-    //     }
-    //     if (i == level) {
-    //         power = _power_levels[j].mw;
-    //         debug("selected power %dmw", power);
-    //         break;
-    //     }
-    // }
+    // first find out how many possible levels there are
+    uint8_t num_active_levels = 0;
+    for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {
+        if (_power_levels[i].active != PowerActive::Inactive && _power_levels[i].mw <= _max_power_mw) {
+            num_active_levels++;
+        }
+    }
+    // iterate through to find the level
+    uint16_t level = constrain_int16(roundf((num_active_levels * (position + 1)/ 6.0f) - 1), 0, num_active_levels - 1);
+    debug("looking for pos %d power level %d from %d", position, level, num_active_levels);
+    uint16_t power = 0;
+    for (uint8_t i = 0, j = 0; i < num_active_levels; i++, j++) {
+        while (j < VTX_MAX_POWER_LEVELS-1 && _power_levels[j].active == PowerActive::Inactive) {
+            j++;
+        }
+        if (i == level) {
+            power = _power_levels[j].mw;
+            debug("selected power %dmw", power);
+            break;
+        }
+    }
 
     if (power == 0) {
         if (!hal.util->get_soft_armed()) {    // don't allow pitmode to be entered if already armed
