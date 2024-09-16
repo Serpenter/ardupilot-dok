@@ -85,8 +85,8 @@ public:
 
     struct PowerLevel {
         uint8_t level;
-        uint16_t mw;
-        uint8_t dbm;
+        AP_Int16 mw;
+        AP_Int8 dbm;
         uint8_t dac; // SmartAudio v1 dac value
         PowerActive active;
     };
