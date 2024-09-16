@@ -283,6 +283,24 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     { 1,    200,  23, 16   },
     { 0x12, 400,  26, 0xFF }, // only in SA 2.1
     { 2,    500,  27, 25   },
+    { 0x12, 600,  28, 0xFF }, // Tramp lies above power levels and always returns 25/100/200/400/600
+    { 3,    800,  29, 40   },
+    { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
+    { 0xFF, 2500, 34, 0XFF }  // slot reserved for a custom power level. Check actual power here
+};
+
+AP_VideoTX::PowerLevel AP_VideoTX::_akk_power_levels[VTX_MAX_POWER_LEVELS] = {
+    // level, mw, dbm, dac
+    { 0,    25,   14, 7    , PowerActive::Active},
+    { 1,    250,  24, 16   , PowerActive::Active},
+    { 2,    500,  27, 25   , PowerActive::Active},
+    { 3,    1000, 30, 40   , PowerActive::Active},
+    { 4,    2000, 33, 0xFF , PowerActive::Active},
+    { 5,    3000, 35, 0XFF , PowerActive::Active},
+    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
+    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
+    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
+    { 0xFF, 2500, 34, 0XFF },  // slot reserved for a custom power level. Check actual power here
 };
 
 AP_VideoTX::AP_VideoTX()
@@ -759,12 +777,31 @@ void AP_VideoTX::change_power(int8_t position)
         return;
     }
 
-    uint8_t num_active_levels = _num_active_levels;
+    uint16_t power = 0;
+    power = _akk_power_levels[positon].mw;
 
-    position = position < num_active_levels ? position : num_active_levels - 1;
-    uint16_t power = _power_levels[position].mw;
-    debug("selected power %dmw", power);
-    // iterate through to find the level
+    // Rework it later
+    // // first find out how many possible levels there are
+    // uint8_t num_active_levels = 0;
+    // for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {
+    //     if (_power_levels[i].active != PowerActive::Inactive && _power_levels[i].mw <= _max_power_mw) {
+    //         num_active_levels++;
+    //     }
+    // }
+    // // iterate through to find the level
+    // uint16_t level = constrain_int16(roundf((num_active_levels * (position + 1)/ 6.0f) - 1), 0, num_active_levels - 1);
+    // debug("looking for pos %d power level %d from %d", position, level, num_active_levels);
+    // uint16_t power = 0;
+    // for (uint8_t i = 0, j = 0; i < num_active_levels; i++, j++) {
+    //     while (j < VTX_MAX_POWER_LEVELS-1 && _power_levels[j].active == PowerActive::Inactive) {
+    //         j++;
+    //     }
+    //     if (i == level) {
+    //         power = _power_levels[j].mw;
+    //         debug("selected power %dmw", power);
+    //         break;
+    //     }
+    // }
 
     if (power == 0) {
         if (!hal.util->get_soft_armed()) {    // don't allow pitmode to be entered if already armed
