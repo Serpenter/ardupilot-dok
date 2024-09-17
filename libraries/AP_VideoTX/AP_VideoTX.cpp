@@ -219,8 +219,8 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     { 2,    800,  29, 40   },
     { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
     { 3,    2000, 33, 40   },
-    { 0x14, 2500, 33, 0xFF }, // only in SA 2.1
-    { 4,    3000, 34, 40   },
+    { 0x14, 2500, 34, 0xFF }, // only in SA 2.1
+    { 4,    3000, 35, 40   },
 };
 
 
