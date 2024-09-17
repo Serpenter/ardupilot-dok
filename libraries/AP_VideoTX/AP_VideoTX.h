@@ -100,7 +100,7 @@ public:
     };
 
     static PowerLevel _power_levels[VTX_MAX_POWER_LEVELS];
-    //static PowerLevel _adj_power_levels[VTX_MAX_ADJUSTABLE_POWER_LEVELS];
+    static SimplePowerLevel _adj_power_levels[VTX_MAX_ADJUSTABLE_POWER_LEVELS];
 
     static const uint16_t VIDEO_CHANNELS[MAX_BANDS][VTX_MAX_CHANNELS];
 
@@ -243,6 +243,7 @@ private:
     AP_Int8 _pow_lvl_4;
     AP_Int16 _pow_mw_4;
     AP_Int8 _pow_dbm_4;
+<<<<<<< HEAD
     AP_Int8 _pow_lvl_5;
     AP_Int16 _pow_mw_5;
     AP_Int8 _pow_dbm_5;
@@ -252,6 +253,15 @@ private:
 
     AP_Int8 _num_active_levels;
 
+=======
+    AP_Int8 _pow_lvl_5;    
+    AP_Int16 _pow_mw_5;
+    AP_Int8 _pow_dbm_5;
+    AP_Int8 _pow_lvl_6;    
+    AP_Int16 _pow_mw_6;
+    AP_Int8 _pow_dbm_6;
+
+>>>>>>> 2e6a9ebe67 (WIP crude implementation of table support)
     bool _initialized;
     // when defaults have been configured
     bool _defaults_set;
