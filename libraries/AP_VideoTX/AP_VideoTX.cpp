@@ -111,71 +111,96 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @Range: 0 99
     AP_GROUPINFO("PRESET6", 13, AP_VideoTX, _preset_6, 05),
 
-    // // @Param: POW_MW_1
-    // // @DisplayName: Power level #1 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_1", 14, AP_VideoTX,  _power_levels[0].mw, 25),
-    // // @Param: POW_DBM_1
-    // // @DisplayName: Power level #1 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_1", 15, AP_VideoTX,  _power_levels[0].dbm, 14),
+    // @Param: POW_LVL_1
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_1", 14, AP_VideoTX,  _pow_lvl_1, 0),
+    // @Param: POW_MW_1
+    // @DisplayName: Power level #1 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_1", 15, AP_VideoTX,  _pow_mw_1, 25),
+    // @Param: POW_DBM_1
+    // @DisplayName: Power level #1 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_1", 16, AP_VideoTX,   _pow_dbm_1, 14),
 
-    // // @Param: POW_MW_2
-    // // @DisplayName: Power level #2 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_2", 16, AP_VideoTX,  _power_levels[1].mw, 100),
-    // // @Param: POW_DBM_2
-    // // @DisplayName: Power level #2 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_2", 17, AP_VideoTX,  _power_levels[1].dbm, 20),
+    // @Param: POW_LVL_2
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_2", 17, AP_VideoTX,  _pow_lvl_2, 1),
+    // @Param: POW_MW_2
+    // @DisplayName: Power level #2 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_2", 18, AP_VideoTX,   _pow_mw_2, 100),
+    // @Param: POW_DBM_2
+    // @DisplayName: Power level #2 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_2", 19, AP_VideoTX,  _pow_dbm_2, 20),
 
-    // // @Param: POW_MW_3
-    // // @DisplayName: Power level #3 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_3", 18, AP_VideoTX,  _power_levels[2].mw, 200),
-    // // @Param: POW_DBM_3
-    // // @DisplayName: Power level #3 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_3", 19, AP_VideoTX,  _power_levels[2].dbm, 23),
+    // @Param: POW_LVL_3
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_3", 20, AP_VideoTX,  _pow_lvl_3, 2),
+    // @Param: POW_MW_3
+    // @DisplayName: Power level #3 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_3", 21, AP_VideoTX,   _pow_mw_3, 200),
+    // @Param: POW_DBM_3
+    // @DisplayName: Power level #3 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_3", 22, AP_VideoTX,  _pow_dbm_3, 23),
 
-    // // @Param: POW_MW_4
-    // // @DisplayName: Power level #4 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_4", 20, AP_VideoTX,  _power_levels[3].mw, 400),
-    // // @Param: POW_DBM_4
-    // // @DisplayName: Power level #4 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_4", 21, AP_VideoTX,  _power_levels[3].dbm, 26),
+    // @Param: POW_LVL_4
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_4", 23, AP_VideoTX,  _pow_lvl_4, 3),
+    // @Param: POW_MW_4
+    // @DisplayName: Power level #4 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_4", 24, AP_VideoTX,   _pow_mw_4, 400),
+    // @Param: POW_DBM_4
+    // @DisplayName: Power level #4 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_4", 25, AP_VideoTX,  _pow_dbm_4, 26),
 
-    // // @Param: POW_MW_5
-    // // @DisplayName: Power level #5 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_5", 22, AP_VideoTX,  _power_levels[4].mw, 800),
-    // // @Param: POW_DBM_5
-    // // @DisplayName: Power level #5 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_5", 23, AP_VideoTX,  _power_levels[4].dbm, 29),
+    // @Param: POW_LVL_5
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_5", 26, AP_VideoTX,  _pow_lvl_5, 4),
+    // @Param: POW_MW_5
+    // @DisplayName: Power level #5 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_5", 27, AP_VideoTX,   _pow_mw_5, 800),
+    // @Param: POW_DBM_5
+    // @DisplayName: Power level #5 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_5", 28, AP_VideoTX,  _pow_dbm_5, 29),
 
-    // // @Param: POW_MW_6
-    // // @DisplayName: Power level #6 in mw
-    // // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
-    // // @Range: 0 30000
-    // AP_GROUPINFO("POW_MW_6", 24, AP_VideoTX,  _power_levels[5].mw, 1000),
-    // // @Param: POW_DBM_6
-    // // @DisplayName: Power level #6 in dbm
-    // // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
-    // // @Range: 0 45
-    // AP_GROUPINFO("POW_DBM_6", 25, AP_VideoTX,  _power_levels[5].dbm, 30),
+    // @Param: POW_LVL_6
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_6", 29, AP_VideoTX,  _pow_lvl_6, 5),
+    // @Param: POW_MW_6
+    // @DisplayName: Power level #6 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_6", 30, AP_VideoTX,   _pow_mw_6, 1000),
+    // @Param: POW_DBM_6
+    // @DisplayName: Power level #6 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_6", 31, AP_VideoTX,   _pow_dbm_6, 30),
+
 
     AP_GROUPEND
 };
@@ -213,16 +238,15 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     // level, mw, dbm, dac
     { 0xFF,  0,    0, 0    }, // only in SA 2.1
     { 0,    25,   14, 7    },
-    { 0x11, 400,  26, 0xFF }, // only in SA 2.1
-    { 1,    500,  27, 25   },
+    { 0x11, 100,  20, 0xFF }, // only in SA 2.1
+    { 1,    200,  23, 16   },
+    { 0x12, 400,  26, 0xFF }, // only in SA 2.1
+    { 2,    500,  27, 25   },
     { 0x12, 600,  28, 0xFF }, // Tramp lies above power levels and always returns 25/100/200/400/600
-    { 2,    800,  29, 40   },
+    { 3,    800,  29, 40   },
     { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
-    { 3,    2000, 34, 40   },
-    { 0x14, 2500, 35, 0xFF }, // only in SA 2.1
-    { 4,    3000, 36, 40   },
+    { 0xFF, 0,    0,  0XFF, PowerActive::Inactive }  // slot reserved for a custom power level
 };
-
 
 AP_VideoTX::AP_VideoTX()
 {
@@ -269,6 +293,58 @@ bool AP_VideoTX::init(void)
     _current_options = _options;
     _current_enabled = _enabled;
     _initialized = true;
+
+    for (int i = 0; i < VTX_MAX_ADJUSTABLE_POWER_LEVELS; ++i)
+    {
+        switch (i)
+        {
+        case 0:
+        {
+            _adj_power_levels[0].level = _pow_lvl_1;
+            _adj_power_levels[0].mw = _pow_mw_1;
+            _adj_power_levels[0].dbm = _pow_dbm_1;
+            break;
+        }
+        case 1:
+        {
+            _adj_power_levels[1].level = _pow_lvl_2;
+            _adj_power_levels[1].mw = _pow_mw_2;
+            _adj_power_levels[1].dbm = _pow_dbm_2;
+            break;
+        }
+        case 2:
+        {
+            _adj_power_levels[2].level = _pow_lvl_3;
+            _adj_power_levels[2].mw = _pow_mw_3;
+            _adj_power_levels[2].dbm = _pow_dbm_3;
+            break;
+        }
+        case 3:
+        {
+            _adj_power_levels[3].level = _pow_lvl_4;
+            _adj_power_levels[3].mw = _pow_mw_4;
+            _adj_power_levels[3].dbm = _pow_dbm_4;
+            break;
+        }
+        case 4:
+        {
+            _adj_power_levels[4].level = _pow_lvl_5;
+            _adj_power_levels[4].mw = _pow_mw_5;
+            _adj_power_levels[4].dbm = _pow_dbm_5;
+            break;
+        }
+        case 5:
+        {
+            _adj_power_levels[5].level = _pow_lvl_6;
+            _adj_power_levels[5].mw = _pow_mw_6;
+            _adj_power_levels[5].dbm = _pow_dbm_6;
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
 
     return true;
 }
@@ -645,10 +721,6 @@ void AP_VideoTX::change_power(int8_t position)
         return;
     }
 
-    // uint16_t power = 0;
-    // power =  _power_levels[position].mw;
-
-    // Rework it later
     // first find out how many possible levels there are
     uint8_t num_active_levels = 0;
     for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {

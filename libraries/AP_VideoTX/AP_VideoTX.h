@@ -83,6 +83,7 @@ public:
         Tramp = 1U<<2
     };
 
+
     struct PowerLevel {
         uint8_t level;
         uint16_t mw;
@@ -91,8 +92,15 @@ public:
         PowerActive active;
     };
 
+    struct SimplePowerLevel
+    {
+        uint8_t level;
+        uint16_t mw;
+        uint8_t dbm;
+    };
+
     static PowerLevel _power_levels[VTX_MAX_POWER_LEVELS];
-    //static PowerLevel _adj_power_levels[VTX_MAX_ADJUSTABLE_POWER_LEVELS];
+    static SimplePowerLevel _adj_power_levels[VTX_MAX_ADJUSTABLE_POWER_LEVELS];
 
     static const uint16_t VIDEO_CHANNELS[MAX_BANDS][VTX_MAX_CHANNELS];
 
@@ -221,6 +229,26 @@ private:
     AP_Int8 _current_preset_5;
     AP_Int8 _preset_6;
     AP_Int8 _current_preset_6;
+
+    // Power level block
+    AP_Int8 _pow_lvl_1;
+    AP_Int16 _pow_mw_1;
+    AP_Int8 _pow_dbm_1;
+    AP_Int8 _pow_lvl_2;
+    AP_Int16 _pow_mw_2;
+    AP_Int8 _pow_dbm_2;
+    AP_Int8 _pow_lvl_3;
+    AP_Int16 _pow_mw_3;
+    AP_Int8 _pow_dbm_3;
+    AP_Int8 _pow_lvl_4;
+    AP_Int16 _pow_mw_4;
+    AP_Int8 _pow_dbm_4;
+    AP_Int8 _pow_lvl_5;    
+    AP_Int16 _pow_mw_5;
+    AP_Int8 _pow_dbm_5;
+    AP_Int8 _pow_lvl_6;    
+    AP_Int16 _pow_mw_6;
+    AP_Int8 _pow_dbm_6;
 
     bool _initialized;
     // when defaults have been configured
