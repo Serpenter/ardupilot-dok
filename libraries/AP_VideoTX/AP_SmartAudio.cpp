@@ -227,12 +227,15 @@ void AP_SmartAudio::update_vtx_params()
             debug("update power (ver %u)", _protocol_version);
             switch (_protocol_version) {
             case SMARTAUDIO_SPEC_PROTOCOL_v21:
+                GCS_SEND_TEXT(MAV_SEVERITY_INFO, "VTX protocol SA 2.1")
                 set_power(vtx.get_configured_power_dbm() | 0x80);
                 break;
             case SMARTAUDIO_SPEC_PROTOCOL_v2:
+                GCS_SEND_TEXT(MAV_SEVERITY_INFO, "VTX protocol SA 2.0")
                 set_power(vtx.get_configured_power_level());
                 break;
             default:    // v1
+                GCS_SEND_TEXT(MAV_SEVERITY_INFO, "VTX protocol SA 1.0")
                 switch(vtx.get_configured_power_level()) {
                     case 1: set_power(16); break; // 200mw
                     case 2: set_power(25); break; // 500mw
