@@ -243,8 +243,6 @@ private:
     AP_Int8 _pow_lvl_4;
     AP_Int16 _pow_mw_4;
     AP_Int8 _pow_dbm_4;
-<<<<<<< HEAD
-<<<<<<< HEAD
     AP_Int8 _pow_lvl_5;
     AP_Int16 _pow_mw_5;
     AP_Int8 _pow_dbm_5;
@@ -254,23 +252,6 @@ private:
 
     AP_Int8 _num_active_levels;
 
-=======
-    AP_Int8 _pow_lvl_5;    
-=======
-    AP_Int8 _pow_lvl_5;
->>>>>>> e9815ef296 (table)
-    AP_Int16 _pow_mw_5;
-    AP_Int8 _pow_dbm_5;
-    AP_Int8 _pow_lvl_6;
-    AP_Int16 _pow_mw_6;
-    AP_Int8 _pow_dbm_6;
-
-<<<<<<< HEAD
->>>>>>> 2e6a9ebe67 (WIP crude implementation of table support)
-=======
-    AP_Int8 _num_active_levels = 0;
-
->>>>>>> e9815ef296 (table)
     bool _initialized;
     // when defaults have been configured
     bool _defaults_set;
