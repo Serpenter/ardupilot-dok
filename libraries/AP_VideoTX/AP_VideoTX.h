@@ -21,7 +21,7 @@
 #include <AP_Param/AP_Param.h>
 
 #define VTX_MAX_CHANNELS 8
-#define VTX_MAX_POWER_LEVELS 10
+#define VTX_MAX_POWER_LEVELS 6
 #define VTX_MAX_ADJUSTABLE_POWER_LEVELS 6
 
 class AP_VideoTX {
@@ -243,12 +243,14 @@ private:
     AP_Int8 _pow_lvl_4;
     AP_Int16 _pow_mw_4;
     AP_Int8 _pow_dbm_4;
-    AP_Int8 _pow_lvl_5;    
+    AP_Int8 _pow_lvl_5;
     AP_Int16 _pow_mw_5;
     AP_Int8 _pow_dbm_5;
-    AP_Int8 _pow_lvl_6;    
+    AP_Int8 _pow_lvl_6;
     AP_Int16 _pow_mw_6;
     AP_Int8 _pow_dbm_6;
+
+    AP_Int8 _num_active_levels = 0;
 
     bool _initialized;
     // when defaults have been configured
