@@ -220,6 +220,8 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     { 0x12, 600,  28, 0xFF }, // Tramp lies above power levels and always returns 25/100/200/400/600
     { 3,    800,  29, 40   },
     { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
+    { 4,    800,  29, 40   },
+    { 0x14, 2000, 33, 0xFF }, // only in SA 2.1
     { 0xFF, 2500, 34, 0XFF}  // slot reserved for a custom power level
 };
 
