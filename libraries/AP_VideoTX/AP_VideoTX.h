@@ -250,7 +250,7 @@ private:
     AP_Int16 _pow_mw_6;
     AP_Int8 _pow_dbm_6;
 
-    AP_Int8 _num_active_levels = 0;
+    AP_Int8 _num_active_levels;
 
     bool _initialized;
     // when defaults have been configured
