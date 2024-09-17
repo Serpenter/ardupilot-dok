@@ -201,6 +201,11 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @Range: 0 45
     AP_GROUPINFO("POW_DBM_6", 31, AP_VideoTX,   _pow_dbm_6, 30),
 
+    // @Param: POW_LEVELS
+    // @DisplayName: Power level count
+    // @Description: How many proper power levels has been configured
+    // @Range: 0 45
+    AP_GROUPINFO("POW_LEVELS", 32, AP_VideoTX,s _num_active_levels, 6),
 
     AP_GROUPEND
 };
@@ -234,19 +239,15 @@ const uint16_t AP_VideoTX::VIDEO_CHANNELS[AP_VideoTX::MAX_BANDS][VTX_MAX_CHANNEL
 // mapping of power level to milliwatt to dbm
 // valid power levels from SmartAudio spec, the adjacent levels might be the actual values
 // so these are marked as level + 0x10 and will be switched if a dbm message proves it
-AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
-    // level, mw, dbm, dac
-    { 0xFF,  0,    0, 0    }, // only in SA 2.1
-    { 0,    25,   14, 7    },
-    { 0x11, 100,  20, 0xFF }, // only in SA 2.1
-    { 1,    200,  23, 16   },
-    { 0x12, 400,  26, 0xFF }, // only in SA 2.1
-    { 2,    500,  27, 25   },
-    { 0x12, 600,  28, 0xFF }, // Tramp lies above power levels and always returns 25/100/200/400/600
-    { 3,    800,  29, 40   },
-    { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
-    { 0xFF, 0,    0,  0XFF, PowerActive::Inactive }  // slot reserved for a custom power level
-};
+// AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
+//     // level, mw, dbm, dac
+//     { 0xFF,  0,    0, 0    }, // only in SA 2.1
+//     { 0,    25,   14, 7    },
+//     { 0x11, 100,  20, 0xFF }, // only in SA 2.1
+//     { 1,    200,  23, 16   },
+//     { 0x12, 400,  26, 0xFF }, // only in SA 2.1
+//     { 2,    500,  27, 25   },
+// };
 
 AP_VideoTX::AP_VideoTX()
 {
@@ -300,44 +301,45 @@ bool AP_VideoTX::init(void)
         {
         case 0:
         {
-            _adj_power_levels[0].level = _pow_lvl_1;
-            _adj_power_levels[0].mw = _pow_mw_1;
-            _adj_power_levels[0].dbm = _pow_dbm_1;
+            _power_levels[0].level = _pow_lvl_1;
+            _power_levels[0].mw = _pow_mw_1;
+            _power_levels[0].dbm = _pow_dbm_1;
+            _power_levels[0].active = PowerActive::Active;
             break;
         }
         case 1:
         {
-            _adj_power_levels[1].level = _pow_lvl_2;
-            _adj_power_levels[1].mw = _pow_mw_2;
-            _adj_power_levels[1].dbm = _pow_dbm_2;
+            _power_levels[1].level = _pow_lvl_2;
+            _power_levels[1].mw = _pow_mw_2;
+            _power_levels[1].dbm = _pow_dbm_2;
             break;
         }
         case 2:
         {
-            _adj_power_levels[2].level = _pow_lvl_3;
-            _adj_power_levels[2].mw = _pow_mw_3;
-            _adj_power_levels[2].dbm = _pow_dbm_3;
+            _power_levels[2].level = _pow_lvl_3;
+            _power_levels[2].mw = _pow_mw_3;
+            _power_levels[2].dbm = _pow_dbm_3;
             break;
         }
         case 3:
         {
-            _adj_power_levels[3].level = _pow_lvl_4;
-            _adj_power_levels[3].mw = _pow_mw_4;
-            _adj_power_levels[3].dbm = _pow_dbm_4;
+            _power_levels[3].level = _pow_lvl_4;
+            _power_levels[3].mw = _pow_mw_4;
+            _power_levels[3].dbm = _pow_dbm_4;
             break;
         }
         case 4:
         {
-            _adj_power_levels[4].level = _pow_lvl_5;
-            _adj_power_levels[4].mw = _pow_mw_5;
-            _adj_power_levels[4].dbm = _pow_dbm_5;
+            _power_levels[4].level = _pow_lvl_5;
+            _power_levels[4].mw = _pow_mw_5;
+            _power_levels[4].dbm = _pow_dbm_5;
             break;
         }
         case 5:
         {
-            _adj_power_levels[5].level = _pow_lvl_6;
-            _adj_power_levels[5].mw = _pow_mw_6;
-            _adj_power_levels[5].dbm = _pow_dbm_6;
+            _power_levels[5].level = _pow_lvl_6;
+            _power_levels[5].mw = _pow_mw_6;
+            _power_levels[5].dbm = _pow_dbm_6;
             break;
         }
         default:
@@ -721,27 +723,12 @@ void AP_VideoTX::change_power(int8_t position)
         return;
     }
 
-    // first find out how many possible levels there are
-    uint8_t num_active_levels = 0;
-    for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {
-        if (_power_levels[i].active != PowerActive::Inactive && _power_levels[i].mw <= _max_power_mw) {
-            num_active_levels++;
-        }
-    }
+    uint8_t num_active_levels = _num_active_levels;
+
+    position = position < num_active_levels ? position : num_active_levels - 1;
+    uint16_t power = _power_levels[position].mw;
+    debug("selected power %dmw", power);
     // iterate through to find the level
-    uint16_t level = constrain_int16(roundf((num_active_levels * (position + 1)/ 6.0f) - 1), 0, num_active_levels - 1);
-    debug("looking for pos %d power level %d from %d", position, level, num_active_levels);
-    uint16_t power = 0;
-    for (uint8_t i = 0, j = 0; i < num_active_levels; i++, j++) {
-        while (j < VTX_MAX_POWER_LEVELS-1 && _power_levels[j].active == PowerActive::Inactive) {
-            j++;
-        }
-        if (i == level) {
-            power = _power_levels[j].mw;
-            debug("selected power %dmw", power);
-            break;
-        }
-    }
 
     if (power == 0) {
         if (!hal.util->get_soft_armed()) {    // don't allow pitmode to be entered if already armed
