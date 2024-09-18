@@ -239,15 +239,15 @@ const uint16_t AP_VideoTX::VIDEO_CHANNELS[AP_VideoTX::MAX_BANDS][VTX_MAX_CHANNEL
 // mapping of power level to milliwatt to dbm
 // valid power levels from SmartAudio spec, the adjacent levels might be the actual values
 // so these are marked as level + 0x10 and will be switched if a dbm message proves it
-// AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
-//     // level, mw, dbm, dac
-//     { 0xFF,  0,    0, 0    }, // only in SA 2.1
-//     { 0,    25,   14, 7    },
-//     { 0x11, 100,  20, 0xFF }, // only in SA 2.1
-//     { 1,    200,  23, 16   },
-//     { 0x12, 400,  26, 0xFF }, // only in SA 2.1
-//     { 2,    500,  27, 25   },
-// };
+AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
+    // level, mw, dbm, dac
+    { 0xFF,  0,    0, 0    }, // only in SA 2.1
+    { 0,    25,   14, 7    },
+    { 0x11, 100,  20, 0xFF }, // only in SA 2.1
+    { 1,    200,  23, 16   },
+    { 0x12, 400,  26, 0xFF }, // only in SA 2.1
+    { 2,    500,  27, 25   },
+};
 
 AP_VideoTX::AP_VideoTX()
 {
@@ -297,6 +297,7 @@ bool AP_VideoTX::init(void)
 
     for (int i = 0; i < VTX_MAX_ADJUSTABLE_POWER_LEVELS; ++i)
     {
+        _power_levels[i].active = i < _num_active_levels ? PowerActive::Active : PowerActive::Inactive;
         switch (i)
         {
         case 0:
@@ -304,7 +305,6 @@ bool AP_VideoTX::init(void)
             _power_levels[0].level = _pow_lvl_1;
             _power_levels[0].mw = _pow_mw_1;
             _power_levels[0].dbm = _pow_dbm_1;
-            _power_levels[0].active = PowerActive::Active;
             break;
         }
         case 1:
