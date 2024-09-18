@@ -205,7 +205,7 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @DisplayName: Power level count
     // @Description: How many proper power levels has been configured
     // @Range: 0 45
-    AP_GROUPINFO("POW_LEVELS", 32, AP_VideoTX,s _num_active_levels, 6),
+    AP_GROUPINFO("POW_LEVELS", 32, AP_VideoTX, _num_active_levels, 6),
 
     AP_GROUPEND
 };
