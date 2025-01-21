@@ -291,6 +291,7 @@ private:
     ModeAcro mode_acro;
     ModeFBWA mode_fbwa;
     ModeFBWB mode_fbwb;
+    ModeFBWC mode_fbwc;
     ModeCruise mode_cruise;
     ModeAutoTune mode_autotune;
     ModeAuto mode_auto;
@@ -364,6 +365,8 @@ private:
         //keeps track of the last valid rc as it relates to the AFS system
         //Does not count rc inputs as valid if the standard failsafe is on
         uint32_t AFS_last_valid_rc_ms;
+
+        float fixed_yaw = 0.0f;
     } failsafe;
 
 #if HAL_QUADPLANE_ENABLED
@@ -1077,6 +1080,7 @@ private:
     void update_loiter_update_nav(uint16_t radius);
     void update_cruise();
     void update_fbwb_speed_height(void);
+    void update_fbwc_speed_height(void);
     void setup_turn_angle(void);
     bool reached_loiter_target(void);
 

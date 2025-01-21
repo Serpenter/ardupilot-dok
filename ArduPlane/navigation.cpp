@@ -429,6 +429,51 @@ void Plane::update_fbwb_speed_height(void)
     calc_nav_pitch();
 }
 
+
+/*
+  handle speed and height control in FBWC, similar to FBWB, but altitude and direction are not 
+  taken from user input but fixed on level flight at current heading
+ */
+void Plane::update_fbwc_speed_height(void)
+{
+    uint32_t now = micros();
+    if (now - target_altitude.last_elev_check_us >= 100000) {
+        // we don't run this on every loop as it would give too small granularity on quadplanes at 300Hz, and
+        // give below 1cm altitude change, which would result in no climb or descent
+        float dt = (now - target_altitude.last_elev_check_us) * 1.0e-6;
+        dt = constrain_float(dt, 0.1, 0.15);
+
+        target_altitude.last_elev_check_us = now;
+
+        float elevator_input = 0.0;
+
+        if (g.flybywire_elev_reverse) {
+            elevator_input = -elevator_input;
+        }
+
+        bool input_stop_climb = !is_positive(elevator_input) && is_positive(target_altitude.last_elevator_input);
+        bool input_stop_descent = !is_negative(elevator_input) && is_negative(target_altitude.last_elevator_input);
+        if (input_stop_climb || input_stop_descent) {
+            // user elevator input reached or passed zero, lock in the current altitude
+            set_target_altitude_current();
+        }
+
+        float climb_rate = g.flybywire_climb_rate * elevator_input;
+        climb_rate = constrain_float(climb_rate, -TECS_controller.get_max_sinkrate(), TECS_controller.get_max_climbrate());
+
+        int32_t alt_change_cm = climb_rate * dt * 100;
+        change_target_altitude(alt_change_cm);
+
+        target_altitude.last_elevator_input = elevator_input;
+    }
+
+    check_fbwb_altitude();
+
+    calc_throttle();
+    calc_nav_pitch();
+}
+
+
 /*
   calculate the turn angle for the next leg of the mission
  */

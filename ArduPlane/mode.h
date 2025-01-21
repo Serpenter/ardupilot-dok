@@ -884,7 +884,7 @@ public:
     void update_target_altitude() override {};
 
 protected:
-
+    float target_yaw = 0.0f;
     bool _enter() override;
 };
 
