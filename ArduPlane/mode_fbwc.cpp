@@ -11,6 +11,7 @@ bool ModeFBWC::_enter()
     plane.set_target_altitude_current();
 
     target_yaw = plane.ahrs.get_yaw();
+    
     return true;
 }
 
