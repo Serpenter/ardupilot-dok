@@ -152,6 +152,7 @@ public:
     friend class ModeAcro;
     friend class ModeFBWA;
     friend class ModeFBWB;
+    friend class ModeFBWC;
     friend class ModeCruise;
     friend class ModeAutoTune;
     friend class ModeAuto;
