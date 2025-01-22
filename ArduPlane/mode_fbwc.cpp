@@ -12,9 +12,13 @@ bool ModeFBWC::_enter()
 
     target_yaw = plane.ahrs.get_yaw();
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 >>>>>>> 37b5461cab (Altitude and yaw control for FBWC)
+=======
+    
+>>>>>>> 999938da7c (Placement fix)
     return true;
 }
 
