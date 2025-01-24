@@ -360,6 +360,7 @@ public:
         k_param_takeoff_throttle_min,
         k_param_takeoff_options,
         k_param_tkoff_unsafe_enable,
+        k_param_throttle_min_alt,
     };
 
     AP_Int16 format_version;
@@ -579,6 +580,7 @@ public:
     AP_Int8         axis_bitmask; // axes to be autotuned
 
     AP_Int8         tkoff_unsafe_enable;
+    AP_Float        throttle_min_alt;
     // just to make compilation easier when all things are compiled out...
     uint8_t unused_integer;
 };

@@ -224,3 +224,7 @@
 #ifndef TKOFF_UNSAFE
     #define TKOFF_UNSAFE 0
 #endif
+
+#ifndef THROTTLE_MIN_ALT
+    #define THROTTLE_MIN_ALT 10.0f
+#endif
