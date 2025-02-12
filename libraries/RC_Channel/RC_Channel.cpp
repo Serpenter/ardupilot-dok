@@ -867,6 +867,7 @@ bool RC_Channel::read_aux()
     } else if (_option == AUX_FUNC::VTX_POWER) {
         int8_t position;
         if (read_6pos_switch(position)) {
+            GCS_SEND_TEXT(MAV_SEVERITY_INFO, "Power switch position: %u\n", position);
             AP::vtx().change_power(position);
             return true;
         }
