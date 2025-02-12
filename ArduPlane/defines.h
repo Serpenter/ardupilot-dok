@@ -39,6 +39,7 @@ enum failsafe_action_short {
     FS_ACTION_SHORT_FBWA = 2,
     FS_ACTION_SHORT_DISABLED = 3,
     FS_ACTION_SHORT_FBWB = 4,
+    FS_ACTION_SHORT_FBWC = 5,
 };
 
 enum failsafe_action_long {
@@ -48,6 +49,7 @@ enum failsafe_action_long {
     FS_ACTION_LONG_PARACHUTE = 3,
     FS_ACTION_LONG_AUTO = 4,
     FS_ACTION_LONG_AUTOLAND = 5,
+    FS_ACTION_LONG_FBWC = 6,
 };
 
 // type of stick mixing enabled

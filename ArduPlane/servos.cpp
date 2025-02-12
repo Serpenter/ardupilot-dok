@@ -135,7 +135,7 @@ bool Plane::suppress_throttle(void)
         return true;
     }
     
-    if (fabsf(relative_altitude) >= 10.0f) {
+    if (fabsf(relative_altitude) >= g2.throttle_min_alt) {
         // we're more than 10m from the home altitude
         throttle_suppressed = false;
         return false;
