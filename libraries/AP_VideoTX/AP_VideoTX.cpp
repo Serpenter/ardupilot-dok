@@ -73,7 +73,139 @@ const AP_Param::GroupInfo AP_VideoTX::var_info[] = {
     // @DisplayName: Video Transmitter Max Power Level
     // @Description: Video Transmitter Maximum Power Level. Different VTXs support different power levels, this prevents the power aux switch from requesting too high a power level. The switch supports 6 power levels and the selected power will be a subdivision between 0 and this setting.
     // @Range: 25 1000
-    AP_GROUPINFO("MAX_POWER", 7, AP_VideoTX, _max_power_mw, 800),
+    AP_GROUPINFO("MAX_POWER", 7, AP_VideoTX, _max_power_mw, 30000),
+
+    // @Param: PRESET1
+    // @DisplayName: Preset #1
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET1", 8, AP_VideoTX, _preset_1, 00),
+
+    // @Param: PRESET2
+    // @DisplayName: Preset #2
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET2", 9, AP_VideoTX, _preset_2, 01),
+
+    // @Param: PRESET3
+    // @DisplayName: Preset #3
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET3", 10, AP_VideoTX, _preset_3, 02),
+
+    // @Param: PRESET4
+    // @DisplayName: Preset #4
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET4", 11, AP_VideoTX, _preset_4, 03),
+
+    // @Param: PRESET5
+    // @DisplayName: Preset #5
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET5", 12, AP_VideoTX, _preset_5, 04),
+
+    // @Param: PRESET6
+    // @DisplayName: Preset #6
+    // @Description: VTX preset, in form XY where X is band and Y is channel. E.g. 02 means A-band, 3-d channel
+    // @Range: 0 99
+    AP_GROUPINFO("PRESET6", 13, AP_VideoTX, _preset_6, 05),
+
+    // @Param: POW_LVL_1
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_1", 14, AP_VideoTX,  _pow_lvl_1, 0),
+    // @Param: POW_MW_1
+    // @DisplayName: Power level #1 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_1", 15, AP_VideoTX,  _pow_mw_1, 25),
+    // @Param: POW_DBM_1
+    // @DisplayName: Power level #1 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_1", 16, AP_VideoTX,   _pow_dbm_1, 14),
+
+    // @Param: POW_LVL_2
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_2", 17, AP_VideoTX,  _pow_lvl_2, 1),
+    // @Param: POW_MW_2
+    // @DisplayName: Power level #2 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_2", 18, AP_VideoTX,   _pow_mw_2, 100),
+    // @Param: POW_DBM_2
+    // @DisplayName: Power level #2 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_2", 19, AP_VideoTX,  _pow_dbm_2, 20),
+
+    // @Param: POW_LVL_3
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_3", 20, AP_VideoTX,  _pow_lvl_3, 2),
+    // @Param: POW_MW_3
+    // @DisplayName: Power level #3 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_3", 21, AP_VideoTX,   _pow_mw_3, 200),
+    // @Param: POW_DBM_3
+    // @DisplayName: Power level #3 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_3", 22, AP_VideoTX,  _pow_dbm_3, 23),
+
+    // @Param: POW_LVL_4
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_4", 23, AP_VideoTX,  _pow_lvl_4, 3),
+    // @Param: POW_MW_4
+    // @DisplayName: Power level #4 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_4", 24, AP_VideoTX,   _pow_mw_4, 400),
+    // @Param: POW_DBM_4
+    // @DisplayName: Power level #4 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_4", 25, AP_VideoTX,  _pow_dbm_4, 26),
+
+    // @Param: POW_LVL_5
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_5", 26, AP_VideoTX,  _pow_lvl_5, 4),
+    // @Param: POW_MW_5
+    // @DisplayName: Power level #5 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_5", 27, AP_VideoTX,   _pow_mw_5, 800),
+    // @Param: POW_DBM_5
+    // @DisplayName: Power level #5 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_5", 28, AP_VideoTX,  _pow_dbm_5, 29),
+
+    // @Param: POW_LVL_6
+    // @DisplayName: Power level number
+    // @Description: Power level preset number. For convenient switch setup
+    AP_GROUPINFO("POW_LVL_6", 29, AP_VideoTX,  _pow_lvl_6, 5),
+    // @Param: POW_MW_6
+    // @DisplayName: Power level #6 in mw
+    // @Description: Power level preset, mw, should be set in concord with coresponding dbm preset
+    // @Range: 0 30000
+    AP_GROUPINFO("POW_MW_6", 30, AP_VideoTX,   _pow_mw_6, 1000),
+    // @Param: POW_DBM_6
+    // @DisplayName: Power level #6 in dbm
+    // @Description: Power level preset, dbm, should be set in concord with coresponding mw preset
+    // @Range: 0 45
+    AP_GROUPINFO("POW_DBM_6", 31, AP_VideoTX,   _pow_dbm_6, 30),
+
+    // @Param: POW_LEVELS
+    // @DisplayName: Power level count
+    // @Description: How many proper power levels has been configured
+    // @Range: 0 45
+    AP_GROUPINFO("POW_LEVELS", 32, AP_VideoTX, _num_active_levels, 6),
 
     // @Param: PRESET1
     // @DisplayName: Preset #1
@@ -151,10 +283,6 @@ AP_VideoTX::PowerLevel AP_VideoTX::_power_levels[VTX_MAX_POWER_LEVELS] = {
     { 1,    200,  23, 16   },
     { 0x12, 400,  26, 0xFF }, // only in SA 2.1
     { 2,    500,  27, 25   },
-    { 0x12, 600,  28, 0xFF }, // Tramp lies above power levels and always returns 25/100/200/400/600
-    { 3,    800,  29, 40   },
-    { 0x13, 1000, 30, 0xFF }, // only in SA 2.1
-    { 0xFF, 2500, 34, 0XFF }  // slot reserved for a custom power level. Check actual power here
 };
 
 AP_VideoTX::AP_VideoTX()
@@ -202,6 +330,59 @@ bool AP_VideoTX::init(void)
     _current_options = _options;
     _current_enabled = _enabled;
     _initialized = true;
+
+    for (int i = 0; i < VTX_MAX_ADJUSTABLE_POWER_LEVELS; ++i)
+    {
+        _power_levels[i].active = i < _num_active_levels ? PowerActive::Active : PowerActive::Inactive;
+        switch (i)
+        {
+        case 0:
+        {
+            _power_levels[0].level = _pow_lvl_1;
+            _power_levels[0].mw = _pow_mw_1;
+            _power_levels[0].dbm = _pow_dbm_1;
+            break;
+        }
+        case 1:
+        {
+            _power_levels[1].level = _pow_lvl_2;
+            _power_levels[1].mw = _pow_mw_2;
+            _power_levels[1].dbm = _pow_dbm_2;
+            break;
+        }
+        case 2:
+        {
+            _power_levels[2].level = _pow_lvl_3;
+            _power_levels[2].mw = _pow_mw_3;
+            _power_levels[2].dbm = _pow_dbm_3;
+            break;
+        }
+        case 3:
+        {
+            _power_levels[3].level = _pow_lvl_4;
+            _power_levels[3].mw = _pow_mw_4;
+            _power_levels[3].dbm = _pow_dbm_4;
+            break;
+        }
+        case 4:
+        {
+            _power_levels[4].level = _pow_lvl_5;
+            _power_levels[4].mw = _pow_mw_5;
+            _power_levels[4].dbm = _pow_dbm_5;
+            break;
+        }
+        case 5:
+        {
+            _power_levels[5].level = _pow_lvl_6;
+            _power_levels[5].mw = _pow_mw_6;
+            _power_levels[5].dbm = _pow_dbm_6;
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
 
     return true;
 }
@@ -577,27 +758,13 @@ void AP_VideoTX::change_power(int8_t position)
     if (!_enabled || position < 0 || position > 5) {
         return;
     }
-    // first find out how many possible levels there are
-    uint8_t num_active_levels = 0;
-    for (uint8_t i = 0; i < VTX_MAX_POWER_LEVELS; i++) {
-        if (_power_levels[i].active != PowerActive::Inactive && _power_levels[i].mw <= _max_power_mw) {
-            num_active_levels++;
-        }
-    }
+
+    uint8_t num_active_levels = _num_active_levels;
+
+    position = position < num_active_levels ? position : num_active_levels - 1;
+    uint16_t power = _power_levels[position].mw;
+    debug("selected power %dmw", power);
     // iterate through to find the level
-    uint16_t level = constrain_int16(roundf((num_active_levels * (position + 1)/ 6.0f) - 1), 0, num_active_levels - 1);
-    debug("looking for pos %d power level %d from %d", position, level, num_active_levels);
-    uint16_t power = 0;
-    for (uint8_t i = 0, j = 0; i < num_active_levels; i++, j++) {
-        while (j < VTX_MAX_POWER_LEVELS-1 && _power_levels[j].active == PowerActive::Inactive) {
-            j++;
-        }
-        if (i == level) {
-            power = _power_levels[j].mw;
-            debug("selected power %dmw", power);
-            break;
-        }
-    }
 
     if (power == 0) {
         if (!hal.util->get_soft_armed()) {    // don't allow pitmode to be entered if already armed
