@@ -18,7 +18,7 @@ bool ModeFBWC::_enter()
 void ModeFBWC::update()
 {
     // Thanks to Yury MonZon for the altitude limit code!
-    plane.nav_roll_cd = (target_yaw - plane.ahrs.get_yaw()) * plane.roll_limit_cd;
+    plane.nav_roll_cd = ((target_yaw - plane.ahrs.get_yaw()) / M_PI) * plane.roll_limit_cd;
 
     plane.update_load_factor();
     plane.update_fbwb_speed_height();
