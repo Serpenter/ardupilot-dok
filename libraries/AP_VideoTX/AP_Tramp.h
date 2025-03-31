@@ -27,7 +27,7 @@
 #include <AP_HAL/utility/RingBuffer.h>
 #include "AP_VideoTX.h"
 
-#define VTX_TRAMP_POWER_COUNT 5
+#define VTX_TRAMP_POWER_COUNT 6
 
 #define VTX_TRAMP_MIN_FREQUENCY_MHZ 1000             //min freq in MHz
 #define VTX_TRAMP_MAX_FREQUENCY_MHZ 5999             //max freq in MHz

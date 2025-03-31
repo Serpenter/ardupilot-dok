@@ -39,6 +39,8 @@
 # define debug(fmt, args...)	do {} while(0)
 #endif
 
+#define TRAMP_DEBUG
+
 extern const AP_HAL::HAL &hal;
 
 AP_Tramp::AP_Tramp()
@@ -457,6 +459,11 @@ void AP_Tramp::set_frequency(uint16_t freq)
         // not valid reset to default
         AP::vtx().set_configured_frequency_mhz(AP::vtx().get_frequency_mhz());
     }
+}
+
+void AP_Tramp::set_power(uint16_t power)
+{
+
 }
 
 void AP_Tramp::update()
