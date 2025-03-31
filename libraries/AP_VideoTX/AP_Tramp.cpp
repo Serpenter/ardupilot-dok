@@ -32,6 +32,7 @@
 #define TRAMP_MIN_REQUEST_PERIOD_US (200 * 1000) // 200ms
 #define TRAMP_STATUS_REQUEST_PERIOD_US (1000 * 1000) // 1s
 
+#define TRAMP_DEBUG
 //#define TRAMP_DEBUG
 #ifdef TRAMP_DEBUG
 # define debug(fmt, args...)	do { hal.console->printf("TRAMP: " fmt "\n", ##args); } while (0)
@@ -39,7 +40,6 @@
 # define debug(fmt, args...)	do {} while(0)
 #endif
 
-#define TRAMP_DEBUG
 
 extern const AP_HAL::HAL &hal;
 
@@ -461,10 +461,10 @@ void AP_Tramp::set_frequency(uint16_t freq)
     }
 }
 
-void AP_Tramp::set_power(uint16_t power)
-{
+// void AP_Tramp::set_power(uint16_t power)
+// {
 
-}
+// }
 
 void AP_Tramp::update()
 {
