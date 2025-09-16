@@ -488,6 +488,9 @@ public:
     // var_info for holding Parameter information
     static const struct AP_Param::GroupInfo var_info[];
 
+    // just to make compilation easier when all things are compiled out...
+    uint8_t unused_integer;
+
     // button reporting library
 #if HAL_BUTTON_ENABLED
     AP_Button *button_ptr;
