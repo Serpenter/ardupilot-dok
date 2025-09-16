@@ -17,6 +17,7 @@
 /tmp/*
 # Exclude all bins but allow font bins and bootloaders
 *.bin
+*.bak
 !*_bl.bin
 !font*.bin
 *.d

@@ -1272,15 +1272,13 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Values: 0:Disable, 1:Enable
     // @User: Standard
     AP_GROUPINFO("TKOFF_UNSAFE", 40, ParametersG2, tkoff_unsafe_enable, TKOFF_UNSAFE),
-    
-
     // @Param: THROTTLE_MIN_ALT
     // @DisplayName: Minimum altitude to allow throttle in automatic throttle modes
     // @Description: Allow throttle in automatic throttle modes on lower altitudes than default 10m ATO. Useful in mountain conditions
     // @Range -1000 1000
     // @Increment: 1
     // @User: Standard
-    AP_GROUPINFO("THROTTLE_MIN_ALT", 37, ParametersG2, throttle_min_alt, THROTTLE_MIN_ALT),
+    AP_GROUPINFO("THROTTLE_MIN_ALT", 41, ParametersG2, throttle_min_alt, THROTTLE_MIN_ALT),
 
     AP_GROUPEND
 };

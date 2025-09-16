@@ -368,7 +368,6 @@ public:
         AHRS_AUTO_TRIM =     182,  // in-flight AHRS autotrim
         AUTOLAND =           183,  //Fixed Wing AUTOLAND Mode
         SYSTEMID =           184,  // system ID as an aux switch
-
         VTX_PRESET =         197, // VTX preset change function
         VTX_BAND =           198, // VTX band change function
         VTX_CHANNEL =        199, // VTX channel change function

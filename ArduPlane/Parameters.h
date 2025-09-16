@@ -370,6 +370,7 @@ public:
         k_param_quicktune,
         k_param_mode_autoland,
         k_param__gcs,
+        
         k_param_tkoff_unsafe_enable,
         k_param_throttle_min_alt,
     };

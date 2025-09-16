@@ -72,6 +72,7 @@ public:
 #endif
 
     // Mode number 30 reserved for "offboard" for external/lua control.
+
         FLY_BY_WIRE_C = 76,
     };
 
