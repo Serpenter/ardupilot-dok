@@ -28,6 +28,8 @@ public:
     */
     bool check_and_forward(class GCS_MAVLINK &link, const mavlink_message_t &msg);
 
+    void set_no_fwd_system(uint8_t nfs ) { no_forward_system = nfs };
+
     /*
       send a MAVLink message to all components with this vehicle's system id
       This is a no-op if no routes to components have been learned
@@ -62,6 +64,9 @@ private:
     
     // a channel mask to block routing as required
     uint8_t no_route_mask;
+
+    // system blocked from broadcasting
+    uint8_t no_forward_system = 0;
     
     // learn new routes
     void learn_route(GCS_MAVLINK &link, const mavlink_message_t &msg);

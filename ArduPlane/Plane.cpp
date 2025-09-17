@@ -1088,6 +1088,7 @@ Plane::Plane(void)
 {
     // C++11 doesn't allow in-class initialisation of bitfields
     auto_state.takeoff_complete = true;
+    gcs().set_no_fwd_system(plane.g2.mavlink_no_fwd);
 }
 
 Plane plane;

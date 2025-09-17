@@ -196,6 +196,8 @@ public:
     void        queued_param_send();
     void        queued_mission_request_send();
 
+    void set_no_fwd_system(uint8_t nfs ) { routing.set_no_fwd_system(nfs) };
+
     bool sending_mavlink1() const;
 
     // returns true if we are requesting any items from the GCS:
