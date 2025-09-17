@@ -1166,6 +1166,13 @@ public:
     virtual const GCS_MAVLINK *chan(const uint8_t ofs) const = 0;
     // return the number of valid GCS objects
     uint8_t num_gcs() const { return _num_gcs; };
+    void set_no_fwd_system(uint8_t nfs )
+    {
+        for(i=0; i < num_gcs(); ++i)
+        {
+            chan(i)->set_no_fwd_system(nfs); 
+        }
+    };
     void send_message(enum ap_message id);
     void send_mission_item_reached_message(uint16_t mission_index);
     void send_named_float(const char *name, float value) const;
