@@ -28,7 +28,7 @@ public:
     */
     bool check_and_forward(class GCS_MAVLINK &link, const mavlink_message_t &msg);
 
-    void set_no_fwd_system(uint8_t nfs ) { no_forward_system = nfs };
+    void set_no_fwd_system(uint8_t nfs ) { no_forward_system = nfs; };
 
     /*
       send a MAVLink message to all components with this vehicle's system id
