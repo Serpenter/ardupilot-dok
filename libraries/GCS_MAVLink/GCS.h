@@ -1168,7 +1168,7 @@ public:
     uint8_t num_gcs() const { return _num_gcs; };
     void set_no_fwd_system(uint8_t nfs )
     {
-        for(i=0; i < num_gcs(); ++i)
+        for(int i = 0; i < num_gcs(); ++i)
         {
             chan(i)->set_no_fwd_system(nfs); 
         }
