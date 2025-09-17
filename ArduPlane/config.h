@@ -231,3 +231,7 @@
 #ifndef THROTTLE_MIN_ALT
     #define THROTTLE_MIN_ALT 10.0f
 #endif
+
+#ifndef MAVLINK_NO_FRWD
+    #define MAVLINK_NO_FRWD 0
+#endif

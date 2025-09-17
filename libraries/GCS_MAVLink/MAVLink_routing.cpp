@@ -162,7 +162,7 @@ bool MAVLink_routing::check_and_forward(GCS_MAVLINK &in_link, const mavlink_mess
         should_process_locally = false;
     }
 #endif
-    if (should_process_locally) {
+    if (should_process_locally || plane.g2.mavlink_no_fwd == msg.sysid) {
         return process_locally;
     }
 

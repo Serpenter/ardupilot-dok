@@ -597,6 +597,7 @@ public:
 #endif
     AP_Int8         tkoff_unsafe_enable;
     AP_Float        throttle_min_alt;
+    AP_Int8         mavlink_no_fwd;
 
 };
 

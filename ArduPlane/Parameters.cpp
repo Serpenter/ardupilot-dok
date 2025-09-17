@@ -1279,6 +1279,14 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Increment: 1
     // @User: Standard
     AP_GROUPINFO("THROTTLE_MIN_ALT", 41, ParametersG2, throttle_min_alt, THROTTLE_MIN_ALT),
+    // @Param: MAVLINK_NO_FRWD
+    // @DisplayName: ID of system that would be ignored in mavlink message forwarding
+    // @Description: In some cases it would be useful to suppress mavlink message forwarding
+    // @Range 0 255
+    // @Increment: 1
+    // @User: Standard
+    AP_GROUPINFO("MAVLINK_NO_FRWD", 42, ParametersG2, mavlink_no_fwd, MAVLINK_NO_FRWD),
+
 
     AP_GROUPEND
 };
