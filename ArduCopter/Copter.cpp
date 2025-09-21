@@ -974,6 +974,7 @@ Copter::Copter(void)
     rc_throttle_control_in_filter(1.0f),
     param_loader(var_info)
 {
+    gcs().set_no_fwd_system(plane.g2.mavlink_no_fwd);
 }
 
 Copter copter;
