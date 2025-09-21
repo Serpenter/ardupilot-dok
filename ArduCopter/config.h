@@ -619,3 +619,7 @@
 #ifndef USER_PARAMS_ENABLED
   #define USER_PARAMS_ENABLED 0
 #endif
+
+#ifndef MAVLINK_NO_FRWD
+    #define MAVLINK_NO_FRWD 0
+#endif
