@@ -701,6 +701,8 @@ public:
     AP_Float rc_tuning2_min;
     AP_Float rc_tuning2_max;
 #endif  // AP_RC_TRANSMITTER_TUNING_ENABLED
+
+    AP_Int8         mavlink_no_fwd;
 };
 
 extern const AP_Param::Info        var_info[];

@@ -1227,6 +1227,14 @@ const AP_Param::GroupInfo ParametersG2::var_info2[] = {
     AP_GROUPINFO("TUNE2", 13, ParametersG2, rc_tuning2_param, 0),
 #endif  // AP_RC_TRANSMITTER_TUNING_ENABLED
 
+    // @Param: MAVLINK_NO_FRWD
+    // @DisplayName: ID of system that would be ignored in mavlink message forwarding
+    // @Description: In some cases it would be useful to suppress mavlink message forwarding
+    // @Range 0 255
+    // @Increment: 1
+    // @User: Standard
+    AP_GROUPINFO("MAVLINK_NO_FRWD", 14, ParametersG2, mavlink_no_fwd, MAVLINK_NO_FRWD),
+
     // ID 62 is reserved for the AP_SUBGROUPEXTENSION
 
     AP_GROUPEND
